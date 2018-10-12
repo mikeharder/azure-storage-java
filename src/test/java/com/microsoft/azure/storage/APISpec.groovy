@@ -211,7 +211,7 @@ class APISpec extends Specification {
 
         HttpPipeline pipeline = StorageURL.createPipeline(creds, po)
 
-        return new ServiceURL(new URL("http://" + creds.getAccountName() + ".blob.core.windows.net"), pipeline)
+        return new ServiceURL(new URL("http://127.0.0.1:10000/devstoreaccount1"), pipeline)
     }
 
     static void cleanupContainers() throws MalformedURLException {
@@ -220,7 +220,7 @@ class APISpec extends Specification {
         HttpPipeline pipeline = StorageURL.createPipeline(primaryCreds, new PipelineOptions())
 
         ServiceURL serviceURL = new ServiceURL(
-                new URL("http://" + System.getenv().get("ACCOUNT_NAME") + ".blob.core.windows.net"), pipeline)
+                new URL("http://127.0.0.1:10000/devstoreaccount1"), pipeline)
         // There should not be more than 5000 containers from these tests
         for (ContainerItem c : serviceURL.listContainersSegment(null,
                 new ListContainersOptions().withPrefix(containerPrefix), null).blockingGet()
